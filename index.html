@@ -8,37 +8,64 @@
 	<meta name="renderer" content="webkit">
 	<meta http-equiv="Cache-Control" content="no-siteapp"/>
 	<link rel="stylesheet" href="css/amazeui.min.css"/>	
-	<script data-cfasync="false" type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script data-cfasync="false" type="text/javascript" src="ld.js"></script>
+	<script data-cfasync="false" type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>	
 </head>
 <body>
 
+<hr>
+<div class="am-g am-g-fixed">
+	  <div class="am-u-md-3 am-text-center">  			
+			<h2>报名区分</h2>
+	  </div>
+		<div class="am-u-md-8">  
+	 
+		
+		<div class="am-btn-group am-btn-group-justify">
+				<a id="chg_cn" class="am-btn am-btn-default am-round am-active" role="button">中国人</a>
+				<a id="chg_jp" class="am-btn am-btn-default am-round" role="button">日本人</a>
+		</div>
+		 </div>
+</div>
+<hr>
 
-<div class="am-g am-g-fixed blog-g-fixed">
+
+
+<div class="am-g am-g-fixed blog-g-fixed am-text-center">
 
   <div class="am-u-md-3">  
-	<h3>東京大学</h3>
-	<div id="tbl_F"></div>	
+			<h3>東京大学</h3>
+		<a class="am-btn am-btn-default am-round" href="#" id="dl_F">csv下载</a>	
+			<div id="tbl_F"></div>	
   </div>
 
   <div class="am-u-md-3">  
-	<h3>大正大学</h3>
-	<div id="tbl_G"></div>	
+			<h3>大正大学</h3>
+			<a class="am-btn am-btn-default am-round" href="#" id="dl_G">csv下载</a>
+			<div id="tbl_G"></div>	
   </div>
 
   <div class="am-u-md-3">  
-	<h3>大谷ホール</h3>
-	<div id="tbl_H"></div>	
+			<h3>大谷ホール</h3>
+		  <a class="am-btn am-btn-default am-round" href="#" id="dl_H">csv下载</a>	
+			<div id="tbl_H"></div>	
   </div>
 
   <div class="am-u-md-3">  
-	<h3>京都大学</h3>
-	<div id="tbl_I"></div>	
+			<h3>京都大学</h3>
+			<a class="am-btn am-btn-default am-round" href="#" id="dl_I">csv下载</a>
+			<div id="tbl_I"></div>	
   </div>
 
 </div>   
 
-<script data-cfasync="false"  src="https://cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js"></script>
-<script data-cfasync="false"  src="js/amazeui.min.js"></script>
+<!--<div style="display:none">
+<ifram id = "prtfrm">	</ifram>
+</div>-->
+
+
+<script data-cfasync="false" src="https://cdn.jsdelivr.net/jquery/2.2.4/jquery.min.js"></script>
+<script data-cfasync="false" src="js/amazeui.min.js"></script>
+<script data-cfasync="false" type="text/javascript" src="ld.js"></script>
+<!-- <script data-cfasync="false"  src="js/jspdf.min.js"></script> -->
 </body>
 </html>

@@ -11,7 +11,7 @@ function drawTable(docurl) {
 
 		var tblDiv = document.getElementById('tbl_'+col);
 		tblDiv.innerHTML="";
-		var csvn = tblDiv.parentElement.innerText.trim();
+		var csvn = "报名表_"+ $(".am-active")[0].innerText.trim() +"--" + tblDiv.parentElement.innerText.trim();
 	  
 		var query = new google.visualization.Query(qstr); 
 

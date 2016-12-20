@@ -25,8 +25,10 @@ function drawTable(docurl) {
 			// This must be a hyperlink
 			$("#dl_"+col).on('click', function (event) {
 
-				exportTableToCSV.apply(this, [ $("#tbl_" + col + " table") , csvn+'.csv']);
+                $(this).attr({ 'download': csvn + '.xls', 'href': getXls($("#tbl_" + col + " table")[0]), 'target': '_blank' }); 
 
+				//exportTableToCSV.apply(this, [ $("#tbl_" + col + " table") , csvn+'.csv']);
+				//window.location.href = getXls($("#tbl_" + col + " table")[0]);
 				// IF CSV, don't do event.preventDefault() or return false
 				// We actually need this to be a typical hyperlink
 			});
@@ -82,6 +84,52 @@ function printTable(divid){
 }
 
 
+function getXls(table){  
+        var uri = 'data:application/vnd.ms-excel;base64,';
+        var template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" '+
+        'xmlns:x="urn:schemas-microsoft-com:office:excel" '+
+        'xmlns="http://www.w3.org/TR/REC-html40">'+
+        '<head>'+
+            '<!--[if gte mso 9]>'+
+            '<xml>'+
+                '<x:ExcelWorkbook>'+
+                    '<x:ExcelWorksheets>'+
+                        '<x:ExcelWorksheet>'+
+                            '<x:WorksheetOptions>'+
+                                '<x:DisplayGridlines/>'+
+                            '</x:WorksheetOptions>'+
+                        '</x:ExcelWorksheet>'+
+                    '</x:ExcelWorksheets>'+
+                '</x:ExcelWorkbook>'+
+            '</xml>'+
+            '<![endif]-->'+
+        '</head>'+
+        '<body>'+
+            '<table>{table}</table>'+
+        '</body>'+
+        '</html>';
+    
+        /**
+         * 转码 base 64
+         * window.btoa能从ascii/二进制流中创建一个base64编码的字符串
+         * escape编码  unescape 解码字符串
+         * encodeURIComponent编码  DecodeURIComponent 解码字符串
+         **/
+        var base64 = function(s) {
+            return window.btoa(unescape(encodeURIComponent(s)));
+        };
+
+        //返回替换完具体数据的xls模板
+        var getXlsXml = function(template,data) {
+            return template.replace(/{(\w+)}/g,data);
+        };
+
+        //返回资源链接
+        return uri+base64(getXlsXml(template, table.innerHTML));
+    };
+
+
+
 function exportTableToCSV($table, filename) {
 
     var $rows = $table.find('tr:has(td),tr:has(th)'),
@@ -115,7 +163,7 @@ function exportTableToCSV($table, filename) {
         // Data URI
         csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
 
-        console.log(csv);
+        //console.log(csv);
 
         if (window.navigator.msSaveBlob) { // IE 10+
             //alert('IE' + csv);

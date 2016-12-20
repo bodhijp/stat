@@ -1,7 +1,7 @@
 google.charts.load('current', {'packages':['table']});
 google.charts.setOnLoadCallback(drawCn);
 
-function drawTable(docurl) {
+function drawTable(docurl , sort ) {
 	
 	var load = function(col){
 		
@@ -18,15 +18,16 @@ function drawTable(docurl) {
 		query.send(function(response){
 			var data = response.getDataTable();
 
-			data.addColumn('string', '缩写');
-            var rowcnt = data.getNumberOfRows();
-            for (var i = 0; i < rowcnt; i++) {
-                var v = data.getValue(i, 0);
-                var py = pinyinUtil.getFirstLetter(v, false);
-                data.setValue(i,2,py);
+            if ( sort === 'cn'){
+                data.addColumn('string', '缩写');
+                var rowcnt = data.getNumberOfRows();
+                for (var i = 0; i < rowcnt; i++) {
+                    var v = data.getValue(i, 0);
+                    var py = pinyinUtil.getFirstLetter(v, false);
+                    data.setValue(i,2,py);
+                }
+               data.sort(2);
             }
-
-            data.sort(2);
                             
 			var table = new google.visualization.Table(tblDiv);
 			table.draw(data, {showRowNumber: true,alternatingRowStyle:false, width: '100%', height: '100%'});	  
@@ -54,7 +55,7 @@ function drawTable(docurl) {
 }
 
 function drawCn(){
-	drawTable('1oAurf_DFFJh30t1vSjlQOu8ij3c4xRTTDRtq0qdNGOM');
+	drawTable('1oAurf_DFFJh30t1vSjlQOu8ij3c4xRTTDRtq0qdNGOM' , 'cn');
 }
 
 function drawJp(){
